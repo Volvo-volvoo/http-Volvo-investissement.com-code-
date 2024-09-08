@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Total de l'Équipe - Volvo Investissement</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Style de la barre de navigation */
+    .navbar {
+      background-color: #4CAF50;
+      color: white;
+      padding: 15px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.2rem;
+      padding: 10px 20px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .navbar a:hover {
+      background-color: #45a049;
+    }
+
+    /* Conteneur principal */
+    .container {
+      padding: 20px;
+      max-width: 1200px;
+      margin: 20px auto;
+    }
+
+    /* Style de la section */
+    .section {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .section h1 {
+      margin: 0;
+      color: #333;
+    }
+
+    .section p {
+      font-size: 1.5rem;
+      margin: 20px 0;
+      color: #333;
+    }
+
+    /* Pied de page avec les boutons fixés */
+    .footer {
+      display: flex;
+      justify-content: space-around;
+      background-color: #4CAF50;
+      padding: 15px 0;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+
+    .footer button {
+      background-color: white;
+      color: #4CAF50;
+      border: 2px solid #4CAF50;
+      border-radius: 5px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .footer button:hover {
+      background-color: #4CAF50;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Conteneur principal -->
+  <div class="container">
+    <!-- Section des totaux des membres -->
+    <div class="section">
+      <h1>Total de l'Équipe</h1>
+      <p>Total invite : 00 membres</p>
+    </div>
+  </div>
+
+  <!-- Pied de page avec les boutons fixés -->
+  <div class="footer">
+    <button onclick="location.href='welcome.html'">Accueil</button>
+    <button onclick="location.href='equipe.html'">Équipe</button>
+    <button onclick="location.href='solde.html'">Solde</button>
+    <button onclick="location.href='investir.html'">Investir</button>
+  </div>
+
+</body>
+</html>

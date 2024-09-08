@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Bienvenue</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Style de l'en-tête */
+    .header {
+      background-color: #4CAF50;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 1.5rem;
+    }
+
+    .header .identifier {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    /* Conteneur principal */
+    .container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      max-width: 800px;
+      margin: 50px auto;
+      text-align: center;
+      flex-grow: 1;
+    }
+
+    /* Section pour une grande image */
+    .image-section {
+      margin: 20px 0;
+      height: 400px; /* Hauteur de la section */
+      background-color: #e0e0e0; /* Couleur de fond pour simuler une image */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .image-section img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: cover;
+    }
+
+    /* Style pour la section de texte */
+    .description {
+      margin-top: 30px;
+      color: #333;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    /* Pied de page avec les boutons fixés */
+    .footer {
+      display: flex;
+      justify-content: space-around;
+      background-color: #4CAF50;
+      padding: 15px 0;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+      z-index: 1000; /* Assurer que le pied de page est au-dessus du contenu */
+    }
+
+    /* Style des boutons */
+    .footer button {
+      background-color: white;
+      color: #4CAF50;
+      border: 2px solid #4CAF50;
+      border-radius: 5px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .footer button:hover {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .footer button:active {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- En-tête avec le numéro de téléphone -->
+  <div class="header">
+    <span>Bienvenue sur VOLVO</span><br>
+    <span class="identifier">Identifiant : <span id="user-phone"></span></span>
+  </div>
+
+  <!-- Conteneur principal -->
+  <div class="container">
+    <!-- Grande section pour l'image -->
+    <div class="image-section">
+      <img src="https://image.noelshack.com/fichiers/2024/36/5/1725632002-38405-3871040105159.jpg
+      " alt="Votre image ici">
+    </div>
+
+    <!-- Section de description ajoutée -->
+    <div class="description">
+      <p><strong>Volvo Investissement</strong>, basé en Côte d'Ivoire, propose des solutions d'investissement innovantes avec des rendements sécurisés. Nous offrons des options adaptées à tous les profils, avec des revenus réguliers et un suivi simplifié des placements.</p>
+      <p>Notre équipe s'engage à fournir un service client de qualité et une plateforme intuitive. Rejoignez-nous pour faire fructifier votre capital en toute confiance.</p>
+    </div>
+  </div>
+
+  <!-- Pied de page avec les boutons fixés -->
+  <div class="footer">
+    <button onclick="location.href='#'">Accueil</button>
+    <button onclick="location.href='equipe.html'">Équipe</button>
+    <button onclick="location.href='solde.html'">Solde</button>
+    <button onclick="location.href='investir.html'">Investir</button>
+  </div>
+
+  <script>
+    // Récupérer le numéro de téléphone depuis le localStorage
+    const phone = localStorage.getItem('phone');
+
+    // Afficher le numéro de téléphone dans l'en-tête
+    document.getElementById('user-phone').innerText = phone ? phone : "Non disponible";
+  </script>
+
+</body>
+</html>

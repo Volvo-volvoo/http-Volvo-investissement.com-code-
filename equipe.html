@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Page d'Invité - Volvo Investissement</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e0f7fa; /* Couleur de fond plus douce */
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Style de la barre de navigation */
+    .navbar {
+      background-color: #00838f; /* Couleur bleu foncé */
+      color: white;
+      padding: 15px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.2rem;
+      padding: 10px 20px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .navbar a:hover {
+      background-color: #006064; /* Légèrement plus foncé au survol */
+    }
+
+    /* Conteneur principal */
+    .container {
+      padding: 20px;
+      max-width: 1200px;
+      margin: 20px auto;
+    }
+
+    /* Style des sections */
+    .section {
+      background-color: #ffffff; /* Blanc pour contraster avec le fond */
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .section h1, .section h2, .section p {
+      margin: 0;
+      color: #004d40; /* Texte en vert foncé */
+    }
+
+    .section p {
+      font-size: 1.2rem;
+      margin: 10px 0;
+    }
+
+    .section button {
+      background-color: #00acc1; /* Bleu plus clair */
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin: 10px;
+    }
+
+    .section button:hover {
+      background-color: #00838f; /* Plus foncé au survol */
+    }
+
+    /* Pied de page avec les boutons fixés */
+    .footer {
+      display: flex;
+      justify-content: space-around;
+      background-color: #004d40;
+      padding: 15px 0;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+
+    .footer button {
+      background-color: white;
+      color: #004d40;
+      border: 2px solid #004d40;
+      border-radius: 5px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .footer button:hover {
+      background-color: #004d40;
+      color: white;
+    }
+
+    /* Style pour le bouton de copie */
+    .copy-button {
+      background-color: #007BFF; /* Bleu standard */
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .copy-button:hover {
+      background-color: #0056b3;
+    }
+
+    .referral-code {
+      background-color: #f1f1f1;
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 5px;
+      font-size: 1.2rem;
+      display: inline-block;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Conteneur principal -->
+  <div class="container">
+    <!-- Section de bienvenue -->
+    <div class="section">
+      <h1>Bienvenue à votre page d'invité Volvo</h1>
+      <p>Veuillez parrainer vos proches et gagner des bonus de pourcentage sur leur recharge.</p>
+    </div>
+
+    <!-- Section des totaux -->
+    <div class="section">
+      <h2>Total de l'équipe</h2>
+      <p>00</p>
+      <h2>Total de recharge de l'équipe</h2>
+      <p>00 XOF</p>
+      <h2>Total de retrait de l'équipe</h2>
+      <p>00 XOF</p>
+      <button onclick="location.href='total-membres.html'">Voir le Total de l'équipe</button>
+    </div>
+
+    <!-- Section de code de parrainage -->
+    <div class="section">
+      <h2>Code de Parrainage</h2>
+      <div id="referral-code" class="referral-code"></div>
+      <button class="copy-button" onclick="copyReferralCode()">Copier le Code</button>
+      <h3>Pourcentage pour chaque invitation</h3>
+      <p>Niveaux 1 : 40%</p>
+      <p>Niveaux 2 : 20%</p>
+      <p>Niveaux 3 : 10%</p>
+    </div>
+  </div>
+
+  <!-- Pied de page avec les boutons fixés -->
+  <div class="footer">
+    <button onclick="location.href='welcome.html'">Accueil</button>
+    <button onclick="location.href='equipe.html'">Équipe</button>
+    <button onclick="location.href='solde.html'">Solde</button>
+    <button onclick="location.href='investir.html'">Investir</button>
+  </div>
+
+  <script>
+    // Génération du code de parrainage unique à chaque actualisation
+    function generateReferralCode() {
+      const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      let code = '';
+      for (let i = 0; i < 6; i++) {
+        const randomIndex = Math.floor(Math.random() * characters.length);
+        code += characters[randomIndex];
+      }
+      return code;
+    }
+
+    function copyReferralCode() {
+      const code = document.getElementById('referral-code').innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        alert('Code copié avec succès !');
+      });
+    }
+
+    document.getElementById('referral-code').innerText = generateReferralCode();
+  </script>
+
+</body>
+</html>

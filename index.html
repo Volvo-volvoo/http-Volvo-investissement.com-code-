@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Inscription et Connexion</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e0f7fa; /* Couleur de fond du corps */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background-color: #ffffff; /* Couleur de fond de la boîte de contenu */
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      max-width: 400px;
+      width: 100%;
+    }
+    h2 {
+      text-align: center;
+      color: #00796b; /* Couleur du texte du titre */
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      color: #004d40; /* Couleur des étiquettes */
+    }
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #004d40;
+      border-radius: 5px;
+    }
+    .form-group button {
+      width: 100%;
+      padding: 10px;
+      background-color: #00796b; /* Couleur de fond des boutons */
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .form-group button:hover {
+      background-color: #004d40; /* Couleur de fond des boutons au survol */
+    }
+    .toggle-btn {
+      display: block;
+      margin-top: 10px;
+      text-align: center;
+      cursor: pointer;
+      color: #00796b; /* Couleur du texte du bouton de bascule */
+    }
+    .toggle-btn:hover {
+      text-decoration: underline;
+    }
+    .error {
+      color: #d32f2f; /* Couleur du texte des erreurs */
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2 id="form-title">Inscription</h2>
+
+  <!-- Formulaire d'inscription -->
+  <form id="signup-form" onsubmit="submitSignupForm(event)">
+    <div class="form-group">
+      <label for="phone">Numéro de téléphone</label>
+      <input type="tel" id="phone" required>
+    </div>
+    <div class="form-group">
+      <label for="password">Mode de passe</label>
+      <input type="password" id="password" required>
+    </div>
+    <div class="form-group">
+      <label for="confirm-password">Confirmer le mode de passe</label>
+      <input type="password" id="confirm-password" required>
+      <span id="error-message" class="error"></span>
+    </div>
+    <div class="form-group">
+      <label for="referral-code">Code de parrainage</label>
+      <input type="text" id="referral-code">
+    </div>
+    <div class="form-group">
+      <button type="submit">S'inscrire</button>
+    </div>
+  </form>
+
+  <!-- Formulaire de connexion (caché par défaut) -->
+  <form id="login-form" style="display: none;" onsubmit="submitLoginForm(event)">
+    <div class="form-group">
+      <label for="login-phone">Numéro de téléphone</label>
+      <input type="tel" id="login-phone" required>
+    </div>
+    <div class="form-group">
+      <label for="login-password">Mode de passe</label>
+      <input type="password" id="login-password" required>
+    </div>
+    <div class="form-group">
+      <button type="submit">Se connecter</button>
+    </div>
+  </form>
+
+  <div class="toggle-btn" onclick="toggleForms()">Basculer vers Connexion</div>
+</div>
+
+<script>
+  // Fonction pour générer un code de parrainage aléatoire
+  function generateReferralCode() {
+    const code = 'PARA-' + Math.floor(1000 + Math.random() * 9000);
+    document.getElementById('referral-code').value = code;
+  }
+
+  // Basculer entre Inscription et Connexion
+  function toggleForms() {
+    const signupForm = document.getElementById('signup-form');
+    const loginForm = document.getElementById('login-form');
+    const formTitle = document.getElementById('form-title');
+    const toggleBtn = document.querySelector('.toggle-btn');
+
+    if (signupForm.style.display === 'none') {
+      signupForm.style.display = 'block';
+      loginForm.style.display = 'none';
+      formTitle.innerText = 'Inscription';
+      toggleBtn.innerText = 'Basculer vers Connexion';
+    } else {
+      signupForm.style.display = 'none';
+      loginForm.style.display = 'block';
+      formTitle.innerText = 'Connexion';
+      toggleBtn.innerText = 'Basculer vers Inscription';
+    }
+  }
+
+  // Vérifier que les mots de passe correspondent et enregistrer dans localStorage
+  function submitSignupForm(event) {
+    event.preventDefault();
+    const phone = document.getElementById('phone').value;
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirm-password').value;
+    const errorMessage = document.getElementById('error-message');
+
+    if (password !== confirmPassword) {
+      errorMessage.innerText = 'Les mots de passe ne correspondent pas.';
+    } else {
+      errorMessage.innerText = '';
+      
+      // Enregistrer le numéro de téléphone et le mot de passe dans localStorage
+      localStorage.setItem('phone', phone);
+      localStorage.setItem('password', password);
+
+      alert('Inscription réussie ! Vous pouvez maintenant vous connecter.');
+
+      // Basculer vers le formulaire de connexion
+      toggleForms();
+    }
+  }
+
+  // Valider les informations de connexion
+  function submitLoginForm(event) {
+    event.preventDefault();
+    const loginPhone = document.getElementById('login-phone').value;
+    const loginPassword = document.getElementById('login-password').value;
+
+    const storedPhone = localStorage.getItem('phone');
+    const storedPassword = localStorage.getItem('password');
+
+    if (loginPhone === storedPhone && loginPassword === storedPassword) {
+      // Redirection vers la page welcome.html après connexion réussie
+      window.location.href = "welcome.html";
+    } else {
+      alert('Numéro de téléphone ou mot de passe incorrect.');
+    }
+  }
+
+  // Initialiser le code de parrainage lors du chargement de la page
+  generateReferralCode();
+</script>
+
+</body>
+</html>
